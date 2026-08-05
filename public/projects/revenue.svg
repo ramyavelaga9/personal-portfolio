@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" fill="none">
+  <rect width="400" height="200" fill="#0f172a"/>
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="200" fill="url(#g1)"/>
+  <path d="M50 150 L100 80 L150 120 L200 60 L250 100 L300 40 L350 90" stroke="#3b82f6" stroke-width="3" fill="none"/>
+  <circle cx="350" cy="90" r="6" fill="#10b981"/>
+  <text x="200" y="180" text-anchor="middle" fill="#64748b" font-family="system-ui" font-size="14">Revenue Optimization</text>
+</svg>

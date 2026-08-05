@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" fill="none">
+  <rect width="400" height="200" fill="#0f172a"/>
+  <defs>
+    <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="200" fill="url(#g4)"/>
+  <rect x="60" y="40" width="280" height="120" rx="8" stroke="#f59e0b" stroke-width="2" fill="none"/>
+  <rect x="80" y="60" width="60" height="40" rx="4" fill="#f59e0b30" stroke="#f59e0b" stroke-width="1"/>
+  <rect x="160" y="60" width="60" height="40" rx="4" fill="#10b98130" stroke="#10b981" stroke-width="1"/>
+  <rect x="240" y="60" width="60" height="40" rx="4" fill="#3b82f630" stroke="#3b82f6" stroke-width="1"/>
+  <path d="M110 130 L160 110 L240 130 L300 100" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text x="200" y="180" text-anchor="middle" fill="#64748b" font-family="system-ui" font-size="14">Annotation Platform</text>
+</svg>

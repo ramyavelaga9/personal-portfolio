@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" fill="none">
+  <rect width="400" height="200" fill="#0f172a"/>
+  <defs>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="200" fill="url(#g3)"/>
+  <rect x="80" y="50" width="240" height="100" rx="12" stroke="#10b981" stroke-width="2" fill="#10b98110"/>
+  <circle cx="110" cy="80" r="8" fill="#10b981"/>
+  <rect x="130" y="72" width="160" height="8" rx="4" fill="#334155"/>
+  <rect x="130" y="90" width="120" height="8" rx="4" fill="#334155"/>
+  <rect x="130" y="108" width="140" height="8" rx="4" fill="#334155"/>
+  <text x="200" y="180" text-anchor="middle" fill="#64748b" font-family="system-ui" font-size="14">Business Advisor Chatbot</text>
+</svg>
