@@ -4,7 +4,16 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Mail, FileDown, Zap, TrendingDown, Users2 } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { ButtonLink } from "./ui/button";
+import { Badge } from "./ui/badge";
 import { AnimatedCounter } from "./AnimatedCounter";
+
+const specializations = [
+  "Real-Time Bidding",
+  "Ranking & Pacing",
+  "Recommendation Systems",
+  "Agentic AI",
+  "Data Pipelines",
+];
 
 const panelStats = [
   {
@@ -45,19 +54,29 @@ export function Hero() {
           transition={{ duration: 0.6 }}
         >
           <p className="text-sm font-medium text-accent mb-5">
-            {siteConfig.role} &middot; {siteConfig.currentCompany}
+            Hi, I&apos;m {siteConfig.name}
           </p>
 
           <h1 className="text-4xl sm:text-5xl lg:text-[3.4rem] font-semibold tracking-tight leading-[1.1] text-foreground mb-6 text-balance">
-            I build the ranking systems that decide which ad wins,{" "}
-            <span className="text-accent">in milliseconds.</span>
+            {siteConfig.role}
           </h1>
 
-          <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-lg">
+          <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg">
             Five years owning ML systems end to end, from modeling to
             production, partnering closely with engineering, product, and
             customers.
           </p>
+
+          <div className="mb-8">
+            <p className="text-xs text-subtle-foreground mb-3">Specializing in</p>
+            <div className="flex flex-wrap gap-2">
+              {specializations.map((item) => (
+                <Badge key={item} variant="outline">
+                  {item}
+                </Badge>
+              ))}
+            </div>
+          </div>
 
           <div className="flex flex-wrap gap-3">
             <ButtonLink variant="default" size="lg" href={siteConfig.resumeUrl} download>
