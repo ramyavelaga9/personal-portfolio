@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Ramya Velaga",
   title: "Ramya Velaga | Senior Machine Learning Engineer",
   description:
-    "Senior Machine Learning Engineer at PubMatic building real-time bid ranking, pacing, and targeting systems. $5M+ in annual revenue impact through end-to-end model ownership. IIT Tirupati, Rank 1 / Gold Medalist.",
+    "Senior Machine Learning Engineer at PubMatic. Five years owning ML systems end to end, from modeling and data pipelines to production infrastructure, partnering directly with engineering, product, and customer teams. $5M+ in measured annual revenue impact. IIT Tirupati, Rank 1 / Gold Medalist.",
   url: "https://ramyavelaga.dev",
   github: "https://github.com/ramyavelaga9",
   linkedin: "https://linkedin.com/in/ramyavelaga",
@@ -11,11 +11,9 @@ export const siteConfig = {
   location: "San Francisco Bay Area, CA",
   resumeUrl: "/resume.pdf",
   role: "Senior Machine Learning Engineer",
-  tagline:
-    "I build the real-time ranking and pacing systems that decide which ads win an auction, in milliseconds.",
   currentCompany: "PubMatic",
   previousCompany: "Mindbody",
-  education: "IIT Tirupati, B.Tech CS — Rank 1, Institute Gold Medal",
+  education: "IIT Tirupati, B.Tech CS - Rank 1, Institute Gold Medal",
 };
 
 // Sourced directly from the resume. Each figure keeps the qualifier the

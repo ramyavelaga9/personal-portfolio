@@ -45,7 +45,7 @@ export function Hero() {
           transition={{ duration: 0.6 }}
         >
           <p className="text-sm font-medium text-accent mb-5">
-            Machine Learning Engineer &middot; {siteConfig.currentCompany}
+            {siteConfig.role} &middot; {siteConfig.currentCompany}
           </p>
 
           <h1 className="text-4xl sm:text-5xl lg:text-[3.4rem] font-semibold tracking-tight leading-[1.1] text-foreground mb-6 text-balance">
@@ -53,8 +53,9 @@ export function Hero() {
           </h1>
 
           <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-lg">
-            Five years turning real-time bidding models into $5M+ of measured
-            annual revenue impact.
+            Five years owning ML systems end to end, from modeling to
+            production, partnering closely with engineering, product, and
+            customers.
           </p>
 
           <div className="flex flex-wrap gap-3">
