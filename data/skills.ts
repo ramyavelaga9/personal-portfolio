@@ -3,50 +3,58 @@ export interface SkillCategory {
   skills: string[];
 }
 
+// Matches the resume's Skills section exactly, grouped the same way.
 export const skillCategories: SkillCategory[] = [
   {
     name: "Programming",
-    skills: ["Python", "Scala", "SQL", "C++"],
+    skills: ["Python", "SQL", "Scala", "C++"],
   },
   {
-    name: "Machine Learning",
+    name: "Data & ML Systems",
     skills: [
-      "PyTorch",
-      "Scikit-learn",
-      "LightGBM",
-      "Recommendation Systems",
-      "NLP",
-      "Computer Vision",
+      "Feature Engineering",
+      "Feature Stores",
+      "Data Pipelines",
+      "ETL",
+      "Predictive Modeling",
+      "Experimentation",
+      "Statistical Analysis",
     ],
   },
   {
-    name: "Big Data & Cloud",
-    skills: ["Spark", "Hadoop", "Snowflake", "AWS"],
+    name: "Data & Cloud",
+    skills: ["Snowflake", "Apache Spark", "PySpark", "Hadoop", "AWS", "DynamoDB", "MongoDB"],
   },
   {
-    name: "Tools & Frameworks",
-    skills: ["Docker", "Flask", "MongoDB", "DynamoDB", "Git"],
+    name: "ML / AI",
+    skills: [
+      "PyTorch",
+      "Deep Learning",
+      "Embedding Models",
+      "Reinforcement Learning",
+      "LightGBM",
+      "XGBoost",
+      "Generative AI",
+      "Agentic AI",
+    ],
   },
-];
-
-export const techStackIcons = [
-  { name: "Python", color: "#3776AB" },
-  { name: "PyTorch", color: "#EE4C2C" },
-  { name: "Spark", color: "#E25A1C" },
-  { name: "Docker", color: "#2496ED" },
-  { name: "AWS", color: "#FF9900" },
-  { name: "Git", color: "#F05032" },
-  { name: "SQL", color: "#336791" },
-  { name: "MongoDB", color: "#47A248" },
-  { name: "Snowflake", color: "#29B5E8" },
-  { name: "LightGBM", color: "#10B981" },
-];
-
-export const heroTechIcons = [
-  "Python",
-  "Spark",
-  "AWS",
-  "PyTorch",
-  "LightGBM",
-  "Docker",
+  {
+    name: "Ad Tech & Ranking",
+    skills: [
+      "Bid Ranking",
+      "Ads Targeting",
+      "Auction Optimization",
+      "Pacing",
+      "Real Time Bidding",
+      "Recommendation Systems",
+    ],
+  },
+  {
+    name: "Production & MLOps",
+    skills: ["Docker", "Kubernetes", "MLflow", "Airflow", "Git", "CI/CD", "ML Observability"],
+  },
+  {
+    name: "Data Processing & Analytics",
+    skills: ["Polars", "Pandas", "NumPy", "Data Visualization", "A/B Testing", "Explainable AI (SHAP)"],
+  },
 ];

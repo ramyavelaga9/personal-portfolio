@@ -19,6 +19,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // One-time hydration read: mirrors the persisted theme choice into state
+    // after mount, since localStorage isn't available during SSR.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const stored = localStorage.getItem("theme") as Theme | null;
     if (stored) {

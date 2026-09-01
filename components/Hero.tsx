@@ -1,182 +1,121 @@
 "use client";
 
-import { motion } from "framer-motion";
-import {
-  Mail,
-  FileDown,
-  ArrowDown,
-} from "lucide-react";
-import { GitHubIcon, LinkedInIcon } from "./icons/SocialIcons";
+import { motion, useReducedMotion } from "framer-motion";
+import { Mail, FileDown, Zap, TrendingDown, Users2 } from "lucide-react";
 import { siteConfig } from "@/data/site";
-import { heroTechIcons } from "@/data/skills";
 import { ButtonLink } from "./ui/button";
-import { Badge } from "./ui/badge";
+import { AnimatedCounter } from "./AnimatedCounter";
 
-const floatingVariants = {
-  animate: (i: number) => ({
-    y: [0, -15, 0],
-    transition: {
-      duration: 3 + i * 0.5,
-      repeat: Infinity,
-      ease: "easeInOut" as const,
-    },
-  }),
-};
+const panelStats = [
+  {
+    icon: TrendingDown,
+    value: 16,
+    prefix: "$",
+    suffix: "M",
+    label: "Ad spend recovered annualized",
+  },
+  {
+    icon: Zap,
+    value: 91,
+    prefix: "",
+    suffix: "%",
+    label: "Less QPS debugging time",
+  },
+  {
+    icon: Users2,
+    value: 1000,
+    prefix: "",
+    suffix: "+",
+    label: "Demand partners kept in pacing",
+  },
+];
 
 export function Hero() {
+  const reduce = useReducedMotion();
+
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section className="relative min-h-[100dvh] flex items-center pt-16 overflow-hidden">
       <div className="absolute inset-0 grid-pattern" />
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute top-1/3 -left-40 w-[28rem] h-[28rem] bg-accent/[0.07] rounded-full blur-3xl" />
 
-      <div className="relative mx-auto max-w-6xl px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
+      <div className="relative mx-auto max-w-6xl px-6 py-16 grid lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
+          initial={reduce ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-emerald-400 font-medium mb-4"
-          >
-            Hi, I&apos;m {siteConfig.name}
-          </motion.p>
-
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6">
-            <span className="gradient-text">{siteConfig.role}</span>
-          </h1>
-
-          <p className="text-lg text-zinc-400 leading-relaxed mb-8 max-w-lg">
-            {siteConfig.tagline}
+          <p className="text-sm font-medium text-accent mb-5">
+            {siteConfig.role} &middot; {siteConfig.currentCompany}
           </p>
 
-          <div className="space-y-3 mb-8 text-sm text-zinc-400">
-            <p>
-              <span className="text-zinc-500">Currently:</span>{" "}
-              <span className="text-zinc-200">
-                Senior Machine Learning Engineer @ {siteConfig.currentCompany}
-              </span>
-            </p>
-            <p>
-              <span className="text-zinc-500">Previously:</span>{" "}
-              <span className="text-zinc-200">{siteConfig.previousCompany}</span>
-            </p>
-            <p>
-              <Badge variant="emerald" className="mt-1">
-                {siteConfig.education}
-              </Badge>
-            </p>
-          </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-[3.4rem] font-semibold tracking-tight leading-[1.1] text-foreground mb-6 text-balance">
+            I build the ranking systems that decide which ad wins,{" "}
+            <span className="text-accent">in milliseconds.</span>
+          </h1>
 
-          <div className="mb-8">
-            <p className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
-              Specializing in
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "Machine Learning",
-                "Recommendation Systems",
-                "Applied AI",
-                "Revenue Optimization",
-                "Scalable Data Pipelines",
-              ].map((skill) => (
-                <Badge key={skill} variant="outline">
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </div>
+          <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-lg">
+            Five years owning ML systems end to end, from modeling to
+            production, partnering closely with engineering, product, and
+            customers.
+          </p>
 
           <div className="flex flex-wrap gap-3">
             <ButtonLink variant="default" size="lg" href={siteConfig.resumeUrl} download>
               <FileDown className="h-4 w-4" />
-              View Resume
+              Download Resume
             </ButtonLink>
-            <ButtonLink
-              variant="outline"
-              size="lg"
-              href={siteConfig.github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <GitHubIcon className="h-4 w-4" />
-              GitHub
-            </ButtonLink>
-            <ButtonLink
-              variant="outline"
-              size="lg"
-              href={siteConfig.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <LinkedInIcon className="h-4 w-4" />
-              LinkedIn
-            </ButtonLink>
-            <ButtonLink variant="ghost" size="lg" href="#contact">
+            <ButtonLink variant="outline" size="lg" href={`mailto:${siteConfig.email}`}>
               <Mail className="h-4 w-4" />
-              Contact
+              Email Me
             </ButtonLink>
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="relative hidden lg:flex items-center justify-center"
+          initial={reduce ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="relative"
         >
-          <div className="relative w-80 h-80">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-600/20 to-emerald-600/20 blur-2xl" />
-            <div className="relative w-full h-full rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm flex items-center justify-center glow-blue">
-              <div className="text-center">
-                <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 flex items-center justify-center text-3xl font-bold text-white">
-                  RV
-                </div>
-                <p className="text-sm text-zinc-400">ML Engineer</p>
-                <p className="text-xs text-zinc-500 mt-1">Production AI Systems</p>
-              </div>
-            </div>
-
-            {heroTechIcons.map((tech, i) => {
-              const angle = (i / heroTechIcons.length) * 2 * Math.PI - Math.PI / 2;
-              const radius = 160;
-              const x = Math.cos(angle) * radius;
-              const y = Math.sin(angle) * radius;
-
-              return (
-                <motion.div
-                  key={tech}
-                  custom={i}
-                  variants={floatingVariants}
-                  animate="animate"
-                  className="absolute"
-                  style={{
-                    left: `calc(50% + ${x}px - 40px)`,
-                    top: `calc(50% + ${y}px - 16px)`,
-                  }}
+          <div className="surface relative overflow-hidden bg-card/60 backdrop-blur-sm p-6 sm:p-7">
+            <div
+              className="absolute -top-24 -right-24 w-64 h-64 rounded-full pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(circle, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%)",
+              }}
+            />
+            <p className="relative text-sm text-muted-foreground mb-6">Selected impact</p>
+            <div className="relative space-y-5">
+              {panelStats.map((stat, i) => (
+                <div
+                  key={stat.label}
+                  className={`flex items-center gap-4 ${
+                    i > 0 ? "pt-5 border-t border-border" : ""
+                  }`}
                 >
-                  <Badge variant="blue" className="shadow-lg whitespace-nowrap">
-                    {tech}
-                  </Badge>
-                </motion.div>
-              );
-            })}
+                  <div className="shrink-0 h-10 w-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center">
+                    <stat.icon className="h-[18px] w-[18px]" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-semibold tabular text-foreground">
+                      <AnimatedCounter
+                        value={stat.value}
+                        prefix={stat.prefix}
+                        suffix={stat.suffix}
+                      />
+                    </p>
+                    <p className="text-sm text-muted-foreground">{stat.label}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
+          <p className="mt-3 text-xs text-subtle-foreground text-right pr-1">
+            Figures from production work at PubMatic, in full detail below.
+          </p>
         </motion.div>
       </div>
-
-      <motion.a
-        href="#about"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
-      >
-        <ArrowDown className="h-5 w-5 animate-bounce" />
-      </motion.a>
     </section>
   );
 }

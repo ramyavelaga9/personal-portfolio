@@ -1,38 +1,71 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { TrendingUp, DollarSign, BarChart3, Clock, Rocket } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { TrendingUp, DollarSign, Gauge, Timer, Users2, Briefcase } from "lucide-react";
 import { impactStats } from "@/data/site";
 import { AnimatedCounter } from "./AnimatedCounter";
 import { SectionHeading } from "./SectionHeading";
 
-const icons = [DollarSign, BarChart3, TrendingUp, Clock, Rocket];
+const icons = [DollarSign, TrendingUp, Gauge, Timer, Users2, Briefcase];
 
 export function Impact() {
-  return (
-    <section id="impact" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-600/5 via-transparent to-emerald-600/5" />
+  const reduce = useReducedMotion();
+  const [hero, ...rest] = impactStats;
+  const HeroIcon = icons[0];
 
-      <div className="relative mx-auto max-w-6xl px-6">
+  return (
+    <section id="impact" className="py-24 relative">
+      <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
-          title="Impact"
-          subtitle="Measurable business outcomes from production ML"
+          title="Impact, in numbers"
+          subtitle="Every figure here traces back to a shipped model and a measured outcome."
         />
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {impactStats.map((stat, i) => {
-            const Icon = icons[i];
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="surface surface-hover relative overflow-hidden p-8 mb-6 flex flex-col sm:flex-row sm:items-center gap-6"
+        >
+          <div
+            className="absolute -top-16 -right-16 w-56 h-56 rounded-full pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%)",
+            }}
+          />
+          <div className="h-14 w-14 rounded-xl bg-accent/10 text-accent flex items-center justify-center shrink-0 relative">
+            <HeroIcon className="h-6 w-6" />
+          </div>
+          <div className="relative">
+            <p className="text-5xl sm:text-6xl font-semibold tabular text-foreground">
+              <AnimatedCounter
+                value={hero.value}
+                prefix={hero.prefix}
+                suffix={hero.suffix}
+                decimals={hero.decimals}
+              />
+            </p>
+            <p className="mt-2 text-lg text-foreground/80">{hero.label}</p>
+            <p className="text-sm text-muted-foreground">{hero.detail}</p>
+          </div>
+        </motion.div>
+
+        <div className="grid gap-6 sm:grid-cols-3">
+          {rest.map((stat, i) => {
+            const Icon = icons[i + 1];
             return (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={reduce ? false : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="text-center p-6 rounded-xl border border-zinc-800 bg-zinc-900/50 hover:border-blue-500/30 transition-colors"
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+                className="surface surface-hover p-6"
               >
-                <Icon className="h-6 w-6 text-blue-400 mx-auto mb-3" />
-                <p className="text-3xl sm:text-4xl font-bold gradient-text mb-2">
+                <Icon className="h-5 w-5 text-accent mb-4" />
+                <p className="text-3xl font-semibold tabular text-foreground">
                   <AnimatedCounter
                     value={stat.value}
                     prefix={stat.prefix}
@@ -40,7 +73,8 @@ export function Impact() {
                     decimals={stat.decimals}
                   />
                 </p>
-                <p className="text-xs sm:text-sm text-zinc-400">{stat.label}</p>
+                <p className="mt-1 text-sm text-foreground/80">{stat.label}</p>
+                <p className="mt-1 text-xs text-subtle-foreground leading-relaxed">{stat.detail}</p>
               </motion.div>
             );
           })}
