@@ -1,92 +1,141 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
-import { GitHubIcon } from "./icons/SocialIcons";
-import Image from "next/image";
-import { projects } from "@/data/projects";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  Activity,
+  Radar,
+  Mic,
+  Database,
+  Shuffle,
+  MessageSquare,
+  type LucideIcon,
+} from "lucide-react";
+import { projects, type Project } from "@/data/projects";
 import { SectionHeading } from "./SectionHeading";
 import { Badge } from "./ui/badge";
-import { ButtonLink } from "./ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+
+const iconMap: Record<Project["icon"], LucideIcon> = {
+  activity: Activity,
+  radar: Radar,
+  mic: Mic,
+  database: Database,
+  shuffle: Shuffle,
+  "message-square": MessageSquare,
+};
 
 export function Projects() {
+  const reduce = useReducedMotion();
+  const featured = projects.filter((p) => p.featured);
+  const [flagship, ...others] = featured;
+  const rest = projects.filter((p) => !p.featured);
+
   return (
     <section id="projects" className="py-24 relative">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
-          title="Featured Projects"
-          subtitle="ML systems with real-world business impact"
+          title="Projects"
+          subtitle="Production systems and hackathon builds, in ranking, targeting, and applied AI."
         />
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, i) => (
-            <motion.div
+        <div className="grid lg:grid-cols-3 gap-6 mb-6">
+          <ProjectCard project={flagship} className="lg:col-span-3" large reduce={!!reduce} delay={0} />
+          {others.map((project, i) => (
+            <ProjectCard
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-            >
-              <Card className="h-full overflow-hidden group">
-                <div className="relative h-48 bg-gradient-to-br from-blue-600/10 to-emerald-600/10 overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent" />
-                </div>
-
-                <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
-                  <div className="flex flex-wrap gap-1.5 mt-2">
-                    {project.techStack.map((tech) => (
-                      <Badge key={tech} variant="blue">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardHeader>
-
-                <CardContent>
-                  <CardDescription className="mb-4">
-                    {project.description}
-                  </CardDescription>
-
-                  <div className="flex gap-2">
-                    {project.githubUrl && (
-                      <ButtonLink
-                        variant="outline"
-                        size="sm"
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <GitHubIcon className="h-3.5 w-3.5" />
-                        GitHub
-                      </ButtonLink>
-                    )}
-                    {project.liveUrl && (
-                      <ButtonLink
-                        variant="ghost"
-                        size="sm"
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-3.5 w-3.5" />
-                        Live Demo
-                      </ButtonLink>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+              project={project}
+              className="lg:col-span-1"
+              reduce={!!reduce}
+              delay={(i + 1) * 0.06}
+            />
           ))}
         </div>
+
+        {rest.length > 0 && (
+          <div className="rounded-2xl border border-border bg-card divide-y divide-border">
+            {rest.map((project) => {
+              const Icon = iconMap[project.icon];
+              return (
+                <div key={project.id} className="flex items-start gap-4 p-5">
+                  <div className="shrink-0 h-9 w-9 rounded-lg bg-muted text-muted-foreground flex items-center justify-center">
+                    <Icon className="h-4 w-4" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                      <h3 className="text-sm font-semibold text-foreground">{project.title}</h3>
+                      <span className="text-xs text-subtle-foreground">{project.period}</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 mt-2">
+                      {project.techStack.map((tech) => (
+                        <Badge key={tech} variant="outline" className="text-[11px]">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
+  );
+}
+
+function ProjectCard({
+  project,
+  className,
+  large,
+  reduce,
+  delay,
+}: {
+  project: Project;
+  className?: string;
+  large?: boolean;
+  reduce: boolean;
+  delay: number;
+}) {
+  const Icon = iconMap[project.icon];
+  return (
+    <motion.div
+      initial={reduce ? false : { opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.5 }}
+      className={`rounded-2xl border border-border bg-card p-6 ${large ? "sm:p-8" : ""} ${className ?? ""}`}
+    >
+      <div className={`flex ${large ? "flex-col sm:flex-row sm:items-start" : "flex-col"} gap-5`}>
+        <div className="shrink-0 h-11 w-11 rounded-xl bg-accent/10 text-accent flex items-center justify-center">
+          <Icon className="h-5 w-5" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-2">
+            <h3 className={`font-semibold text-foreground ${large ? "text-xl" : "text-base"}`}>
+              {project.title}
+            </h3>
+            <Badge variant="outline" className="text-[11px]">
+              {project.kind}
+            </Badge>
+          </div>
+          <p className="text-xs text-subtle-foreground mb-3">{project.period}</p>
+          <p className={`text-muted-foreground leading-relaxed ${large ? "text-base max-w-2xl" : "text-sm"}`}>
+            {project.description}
+          </p>
+          {project.metric && (
+            <p className="text-sm font-medium text-accent mt-3">{project.metric}</p>
+          )}
+          <div className="flex flex-wrap gap-1.5 mt-4">
+            {project.techStack.map((tech) => (
+              <Badge key={tech} variant="outline" className="text-[11px]">
+                {tech}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 }

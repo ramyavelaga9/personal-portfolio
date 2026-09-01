@@ -1,72 +1,64 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 import { timeline } from "@/data/timeline";
 import { SectionHeading } from "./SectionHeading";
 import { Badge } from "./ui/badge";
 
 export function Timeline() {
+  const reduce = useReducedMotion();
   return (
-    <section id="experience" className="py-24 relative bg-zinc-950/50">
+    <section id="experience" className="py-24 relative bg-muted/40">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
-          title="Career Timeline"
-          subtitle="From research to production ML at scale"
+          title="Experience"
+          subtitle="Four years of production ML across ad tech and consumer platforms."
         />
 
         <div className="relative max-w-3xl mx-auto">
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/50 via-emerald-500/30 to-transparent" />
+          <div className="absolute left-5 top-2 bottom-2 w-px bg-border-strong" />
 
-          <div className="space-y-12">
+          <div className="space-y-10">
             {timeline.map((entry, i) => (
               <motion.div
                 key={entry.id}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={reduce ? false : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="relative pl-20"
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+                className="relative pl-16"
               >
                 <div
-                  className={`absolute left-5 top-1 w-7 h-7 rounded-full border-2 flex items-center justify-center ${
-                    entry.current
-                      ? "border-emerald-500 bg-emerald-500/20"
-                      : "border-blue-500/50 bg-zinc-900"
+                  className={`absolute left-0 top-0 w-10 h-10 rounded-full border-2 flex items-center justify-center bg-background ${
+                    entry.current ? "border-accent" : "border-border-strong"
                   }`}
                 >
                   <Briefcase
-                    className={`h-3.5 w-3.5 ${
-                      entry.current ? "text-emerald-400" : "text-blue-400"
-                    }`}
+                    className={`h-4 w-4 ${entry.current ? "text-accent" : "text-muted-foreground"}`}
                   />
                 </div>
 
-                <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 hover:border-zinc-700 transition-colors">
-                  <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+                <div className="rounded-2xl border border-border bg-card p-6">
+                  <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
                     <div>
-                      <h3 className="text-lg font-semibold text-zinc-100">
-                        {entry.title}
-                      </h3>
-                      <p className="text-blue-400 font-medium">{entry.company}</p>
+                      <h3 className="text-lg font-semibold text-foreground">{entry.title}</h3>
+                      <p className="text-sm text-muted-foreground">
+                        {entry.company} &middot; {entry.location}
+                      </p>
                     </div>
-                    <Badge variant={entry.current ? "emerald" : "outline"}>
-                      {entry.period}
-                    </Badge>
+                    <Badge variant={entry.current ? "accent" : "outline"}>{entry.period}</Badge>
                   </div>
 
-                  <ul className="space-y-2">
+                  <ul className="space-y-2.5 mt-4">
                     {entry.highlights.map((highlight, j) => (
-                      <li
-                        key={j}
-                        className="text-sm text-zinc-400 flex items-start gap-2"
-                      >
-                        <span className="text-emerald-500 mt-1.5 shrink-0">•</span>
+                      <li key={j} className="text-sm text-foreground/75 flex items-start gap-2.5 leading-relaxed">
+                        <span className="text-accent mt-1.5 shrink-0 text-[10px]">&#9679;</span>
                         <span
                           dangerouslySetInnerHTML={{
                             __html: highlight.replace(
                               /\*\*(.*?)\*\*/g,
-                              '<strong class="text-zinc-200">$1</strong>'
+                              '<strong class="text-foreground font-semibold">$1</strong>'
                             ),
                           }}
                         />
