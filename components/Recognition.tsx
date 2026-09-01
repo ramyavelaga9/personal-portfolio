@@ -27,9 +27,9 @@ export function Recognition() {
               <BookOpen className="h-4 w-4 text-accent" />
               Publications
             </h3>
-            <div className="rounded-2xl border border-border bg-card divide-y divide-border">
+            <div className="surface divide-y divide-border">
               {publications.map((pub) => (
-                <div key={pub.id} className="p-5">
+                <div key={pub.id} className="p-5 transition-colors hover:bg-muted/40">
                   <p className="text-sm font-medium text-foreground leading-snug">{pub.title}</p>
                   <div className="flex items-center gap-2 mt-2">
                     <p className="text-xs text-muted-foreground">
@@ -63,7 +63,7 @@ export function Recognition() {
             </h3>
             <div className="grid sm:grid-cols-3 gap-4">
               {awardGroups.map((group) => (
-                <div key={group.id} className="rounded-2xl border border-border bg-card p-5">
+                <div key={group.id} className="surface surface-hover p-5">
                   <p className="text-xs text-muted-foreground mb-3">{group.label}</p>
                   <ul className="space-y-3">
                     {group.items.map((item) => (

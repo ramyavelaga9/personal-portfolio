@@ -59,7 +59,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="rounded-2xl border border-border bg-card p-6 space-y-5"
+            className="surface p-6 space-y-5"
           >
             {facts.map((fact, i) => (
               <div

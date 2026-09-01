@@ -39,7 +39,7 @@ export function Timeline() {
                   />
                 </div>
 
-                <div className="rounded-2xl border border-border bg-card p-6">
+                <div className="surface surface-hover p-6">
                   <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
                     <div>
                       <h3 className="text-lg font-semibold text-foreground">{entry.title}</h3>

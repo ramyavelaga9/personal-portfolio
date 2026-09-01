@@ -49,13 +49,13 @@ export function Contact() {
               href={link.href}
               target={link.label !== "Email" ? "_blank" : undefined}
               rel={link.label !== "Email" ? "noopener noreferrer" : undefined}
-              className="group flex flex-col gap-3 p-5 rounded-2xl border border-border bg-card hover:border-border-strong transition-colors"
+              className="surface surface-hover group flex flex-col gap-3 p-5"
             >
               <div className="flex items-center justify-between">
                 <div className="p-2.5 rounded-lg bg-accent/10 text-accent">
                   <link.icon className="h-4 w-4" />
                 </div>
-                <ArrowUpRight className="h-4 w-4 text-subtle-foreground group-hover:text-accent transition-colors" />
+                <ArrowUpRight className="h-4 w-4 text-subtle-foreground transition-all duration-300 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">{link.label}</p>

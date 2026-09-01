@@ -23,7 +23,7 @@ export function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.06, duration: 0.5 }}
-              className="rounded-2xl border border-border bg-card p-6"
+              className="surface surface-hover p-6"
             >
               <h3 className="text-sm font-semibold text-foreground mb-4">{category.name}</h3>
               <div className="flex flex-wrap gap-2">

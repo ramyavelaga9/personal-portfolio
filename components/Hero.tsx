@@ -49,7 +49,8 @@ export function Hero() {
           </p>
 
           <h1 className="text-4xl sm:text-5xl lg:text-[3.4rem] font-semibold tracking-tight leading-[1.1] text-foreground mb-6 text-balance">
-            I build the ranking systems that decide which ad wins, in milliseconds.
+            I build the ranking systems that decide which ad wins,{" "}
+            <span className="text-accent">in milliseconds.</span>
           </h1>
 
           <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-lg">
@@ -76,9 +77,16 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="relative"
         >
-          <div className="rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-6 sm:p-7">
-            <p className="text-sm text-muted-foreground mb-6">Selected impact</p>
-            <div className="space-y-5">
+          <div className="surface relative overflow-hidden bg-card/60 backdrop-blur-sm p-6 sm:p-7">
+            <div
+              className="absolute -top-24 -right-24 w-64 h-64 rounded-full pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(circle, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%)",
+              }}
+            />
+            <p className="relative text-sm text-muted-foreground mb-6">Selected impact</p>
+            <div className="relative space-y-5">
               {panelStats.map((stat, i) => (
                 <div
                   key={stat.label}

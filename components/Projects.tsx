@@ -51,11 +51,14 @@ export function Projects() {
         </div>
 
         {rest.length > 0 && (
-          <div className="rounded-2xl border border-border bg-card divide-y divide-border">
+          <div className="surface divide-y divide-border">
             {rest.map((project) => {
               const Icon = iconMap[project.icon];
               return (
-                <div key={project.id} className="flex items-start gap-4 p-5">
+                <div
+                  key={project.id}
+                  className="flex items-start gap-4 p-5 transition-colors hover:bg-muted/40"
+                >
                   <div className="shrink-0 h-9 w-9 rounded-lg bg-muted text-muted-foreground flex items-center justify-center">
                     <Icon className="h-4 w-4" />
                   </div>
@@ -105,9 +108,18 @@ function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.5 }}
-      className={`rounded-2xl border border-border bg-card p-6 ${large ? "sm:p-8" : ""} ${className ?? ""}`}
+      className={`surface surface-hover relative overflow-hidden p-6 ${large ? "sm:p-8" : ""} ${className ?? ""}`}
     >
-      <div className={`flex ${large ? "flex-col sm:flex-row sm:items-start" : "flex-col"} gap-5`}>
+      {large && (
+        <div
+          className="absolute -top-20 -right-20 w-64 h-64 rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%)",
+          }}
+        />
+      )}
+      <div className={`relative flex ${large ? "flex-col sm:flex-row sm:items-start" : "flex-col"} gap-5`}>
         <div className="shrink-0 h-11 w-11 rounded-xl bg-accent/10 text-accent flex items-center justify-center">
           <Icon className="h-5 w-5" />
         </div>

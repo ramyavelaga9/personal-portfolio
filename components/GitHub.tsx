@@ -85,7 +85,7 @@ export function GitHub() {
               initial={reduce ? false : { opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex flex-wrap items-center gap-x-10 gap-y-4 p-6 rounded-2xl border border-border bg-card"
+              className="surface flex flex-wrap items-center gap-x-10 gap-y-4 p-6"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -123,7 +123,7 @@ export function GitHub() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06 }}
-                  className="rounded-2xl border border-border bg-card p-5"
+                  className="surface surface-hover p-5"
                 >
                   <h3 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-2">
                     <GitHubIcon className="h-4 w-4 text-muted-foreground" />

@@ -6,10 +6,7 @@ export function Card({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn(
-        "rounded-2xl border border-border bg-card transition-all hover:border-border-strong",
-        className
-      )}
+      className={cn("surface surface-hover", className)}
       {...props}
     />
   );

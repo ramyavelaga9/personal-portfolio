@@ -26,12 +26,19 @@ export function Impact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-border bg-card p-8 mb-6 flex flex-col sm:flex-row sm:items-center gap-6"
+          className="surface surface-hover relative overflow-hidden p-8 mb-6 flex flex-col sm:flex-row sm:items-center gap-6"
         >
-          <div className="h-14 w-14 rounded-xl bg-accent/10 text-accent flex items-center justify-center shrink-0">
+          <div
+            className="absolute -top-16 -right-16 w-56 h-56 rounded-full pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%)",
+            }}
+          />
+          <div className="h-14 w-14 rounded-xl bg-accent/10 text-accent flex items-center justify-center shrink-0 relative">
             <HeroIcon className="h-6 w-6" />
           </div>
-          <div>
+          <div className="relative">
             <p className="text-5xl sm:text-6xl font-semibold tabular text-foreground">
               <AnimatedCounter
                 value={hero.value}
@@ -55,7 +62,7 @@ export function Impact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08, duration: 0.5 }}
-                className="rounded-2xl border border-border bg-card p-6"
+                className="surface surface-hover p-6"
               >
                 <Icon className="h-5 w-5 text-accent mb-4" />
                 <p className="text-3xl font-semibold tabular text-foreground">

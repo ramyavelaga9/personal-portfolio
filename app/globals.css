@@ -97,8 +97,57 @@ body {
   background-size: 32px 32px;
 }
 
+/* Numeric data (stats, counters, figures) reads as measured/engineered
+   rather than marketing copy, so it gets the mono face everywhere. */
 .tabular {
   font-variant-numeric: tabular-nums;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+/* Shared card surface. Base look + an optional interactive hover state
+   (lift + accent-tinted shadow, never a pure-black drop shadow). */
+.surface {
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+
+.surface-hover {
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.surface-hover:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-3px);
+  box-shadow:
+    0 20px 40px -22px color-mix(in srgb, var(--accent) 30%, transparent),
+    0 6px 16px -8px color-mix(in srgb, var(--foreground) 12%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surface-hover:hover {
+    transform: none;
+  }
+}
+
+/* Fine grain over the whole page for depth, never on a scrolling
+   container of its own (fixed + pointer-events-none, per guidance). */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.light body::before {
+  opacity: 0.018;
 }
 
 @keyframes marquee {
